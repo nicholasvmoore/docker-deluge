@@ -13,4 +13,4 @@ VOLUME ["/downloads"]
 
 EXPOSE 8112 53160 53160/udp 58846
 
-ENTRYPOINT "deluge.sh"
+ENTRYPOINT "/deluge.sh"
