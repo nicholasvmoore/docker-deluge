@@ -4,6 +4,9 @@ Deluge Docker Container
 # Deluge Configuration
 The configuration files for deluge are located in a Volume that can be mounted to the container. 
 
+# Deluge-web default password
+Welcome!
+
 ## Volumes
 - /config # This is where the flexget configuration YML should be mapped
 - /watch  # This is where the torrent files will be placed upon retrieval
@@ -23,5 +26,5 @@ docker build -t deluge $PWD/docke-plex/.
 
 # Example Usage
 ```bash
-docker run -v /opt/flexget:/config -v /opt/torrents/watch/comics:/watch --env="flexgetConfig=/config/comics.yml" --name"comics-flexget" nicholasvmoore/docker-flexget
+docker run -v /opt/deluge:/config -v /opt/torrents/watch:/watch -v /home/nicholas/downloads:/downloads --name"nicholas-deluge" nicholasvmoore/docker-deluge 
 ```

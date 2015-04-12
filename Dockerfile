@@ -11,6 +11,6 @@ VOLUME ["/config"]
 VOLUME ["/watch"]
 VOLUME ["/downloads"]
 
-EXPOSE 80 58846
+EXPOSE 8112 53160 53160/udp 58846
 
 ENTRYPOINT "deluge.sh"
