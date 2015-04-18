@@ -6,9 +6,10 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 Restart=always
+User=%i
 ExecStartPre=-/usr/bin/docker kill %i-deluge
 ExecStartPre=-/usr/bin/docker rm %i-deluge
-ExecStart=/usr/bin/docker run -v /opt/config/deluge/%i:/config -v /home/%i/torrents:/watch -v /home/%i/downloads:/downloads --name="%i-deluge" -p 8112:8112 -p 53160-53168:53160-53168/tcp -p 53160-53168:53160-53168/udp nicholasvmoore/docker-deluge
+ExecStart=/usr/bin/docker run -v /home/%i/deluge/:/config -v /home/%i/torrents:/watch -v /home/%i/downloads:/downloads --name="%i-deluge" -p 8112:8112 -p 53160-53168:53160-53168/tcp -p 53160-53168:53160-53168/udp nicholasvmoore/docker-deluge
 ExecStop=/usr/bin/docker stop %i-deluge
 
 [Install]
