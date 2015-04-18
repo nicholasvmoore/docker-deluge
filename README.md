@@ -12,8 +12,15 @@ Welcome!
 - /watch  # This is where the torrent files will be placed upon retrieval
 - /downloads # This is where the downloads for the torrents will be placed when completed
 
-# SystemD unit file template
-The unit file will use the %i variable as the username to store the files, it assumes this user exists on the machine. For example, deluge@user.service maps the /downloads volume to /home/user/downloads.
+# SystemD unit template
+The template assumes the instance is a user on the machine and is added to the docker group.
+
+|Specifier|Usage|
+|---|---|
+|**%i**|Used to name the docker container <br /> Used to specify the $HOMEDIR of the user where the configuration files, torrent files and downloads are placed <br /> Used to specify the user who will run the container |
+|**%u**|Specified by **%i**| 
+## Volume mappings
+
 
 ### Symlink example
 ```bash
