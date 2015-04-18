@@ -1,0 +1,16 @@
+[Unit]
+Description=Deluge, is a BitTorrent client written in Python
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker kill %i-deluge
+ExecStartPre=-/usr/bin/docker rm %i-deluge
+ExecStart=/usr/bin/docker run -v /opt/deluge/%i:/config -v /opt/torrents/%i:/watch --name="%i-deluge" nicholasvmoore/docker-deluge
+ExecStart=/usr/bin/docker run -v /opt/deluge/%i:/config -v /opt/torrents/%i:/watch -v /home/%i/downloads:/downloads --name="%i-deluge" -p 8112:8112 -p 53160-53168:53160-53168/tcp -p 53160-53168:53160-53168/udp nicholasvmoore/docker-deluge
+ExecStop=/usr/bin/docker stop %i-deluge
+
+[Install]
+WantedBy=mutli-user.target
